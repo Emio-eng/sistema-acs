@@ -1,0 +1,23 @@
+@startuml RF_006
+!theme spacelab
+skinparam actorStyle awesome
+
+:Usuário do sistema: as usuario #text:blue
+rectangle requisito_funcional as "RF 006/007"
+
+(Alterar senha) as RF006
+(Inserir senha antiga) as senha_antiga
+(Inserir senha nova) as senha_nova
+(Recuperar senha) as RF007
+(Inserir email) as inserir_email
+(Acessar o link da recuperação de senha) as link_recu_senha
+
+usuario --> RF006
+RF006 ..> senha_antiga #line:gray;text:blue : <<include>>
+RF006 ..> senha_nova #line:gray;text:blue : <<include>>
+usuario --> RF007
+RF007 ..> inserir_email#line:gray;text:blue : <<include>>
+RF007 ..> link_recu_senha#line:gray;text:blue : <<include>>
+
+
+@enduml

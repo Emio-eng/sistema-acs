@@ -1,0 +1,60 @@
+@startuml Diagrama C3 - Componentes
+!theme spacelab
+
+node "Front-End" as front #a7ba59 {
+
+}
+
+package "API" as api #a7ba59 {
+    folder "Serviço" as servico #White {
+        [ControleAcessoServico]
+        [RequisicaoCertificadoServico]
+        [RequisicaoServico]
+        [CertificadoServico]
+        note as servico_note #Gray
+            Possui a lógica de negócio do
+            sistema.
+        end note
+    }
+
+    folder "Controlador" as controlador #White {
+        [ControleAcessoControlador]
+        [RequisicaoControlador]
+
+        note as controlador_note #Gray
+            Atua como um intermediário entre
+            a interface do usuário e a lógica
+            do sistema.
+        end note
+    }
+
+    folder "Repositório" as repositorio #White {
+        [UsuarioRepositorio]
+        [RequisicaoRepositorio]
+        [CertificadoRepositorio]
+        note as repositorio_note #Gray
+            Responsável por fazer as operações
+            de CRUD no banco de dados.
+        end note
+    }
+
+    folder "Domínio" as dominio #White {
+        [Modelo] as modelo
+        [DTO] as dto
+        [Resposta] as resposta
+        note as dominio_note #Gray
+            Representa as entidades principais
+            dos sistemas.
+        end note
+    }
+
+    front -right--> api
+
+    controlador -> servico #line:gray;text:blue : usa
+    servico -> repositorio #line:gray;text:blue : usa
+
+    controlador --> resposta #line:gray;line.dashed;text:blue : manipula
+    servico --> dto #line:gray;line.dashed;text:blue : manipula
+    repositorio --> modelo #line:gray;line.dashed;text:blue : ORM
+}
+@enduml

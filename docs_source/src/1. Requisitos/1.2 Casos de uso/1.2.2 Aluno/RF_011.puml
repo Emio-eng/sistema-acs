@@ -1,0 +1,28 @@
+@startuml RF_011
+!theme spacelab
+skinparam actorStyle awesome
+
+:Perfil Aluno: as PA #text:blue
+rectangle requisito_funcional as "RF 011"
+
+(Cadastrar requisição) as RF11
+(Inserir semestre ) as semestre 
+(Inserir certificados) as inserir_certificado
+(Inserir titulo) as titulo_certificado
+(Inserir descrição) as descricao_certificado
+(Inserir data) as data_certificado
+(Inserir horas) as horas_certificado
+(Inserir atividade) as atividade_certificado
+(Inserir arquivo) as arquivo_certificado
+
+PA --> RF11 
+RF11 .down.> semestre #line:gray;text:blue : <<include>>
+RF11 ..> inserir_certificado #line:gray;text:blue : <<include>>
+inserir_certificado .left.> titulo_certificado #line:gray;text:blue : <<include>>
+inserir_certificado ..> descricao_certificado #line:gray;text:blue : <<include>>
+inserir_certificado ..> data_certificado #line:gray;text:blue : <<include>>
+inserir_certificado ..> horas_certificado #line:gray;text:blue : <<include>>
+inserir_certificado ..> atividade_certificado #line:gray;text:blue : <<include>>
+inserir_certificado ..> arquivo_certificado #line:gray;text:blue : <<include>>
+
+@enduml

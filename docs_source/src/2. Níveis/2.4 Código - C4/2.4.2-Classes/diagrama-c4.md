@@ -1,0 +1,10 @@
+A imagem acima denota as principais entidades que compõem o sistema e os seus relacionamentos. O diagrama de classes UML é uma representação visual que ilustra a estrutura estática de um sistema, exibindo as classes, seus atributos, métodos, relacionamentos e associações. Ele desempenha um papel fundamental na modelagem orientada a objetos, permitindo uma visualização clara e organizada da organização e composição das classes em um sistema de software. Além de fornecer uma visão estrutural, o diagrama de classes pode ser expandido para mostrar a implementação de cada componente por meio de diagramas como UML (Linguagem de Modelagem Unificada), diagramas de entidade-relacionamento ou outros similares. No entanto, é importante destacar que esse nível de detalhe é opcional e geralmente disponível mediante solicitação em ferramentas como IDEs (Ambientes de Desenvolvimento Integrado).
+
+Idealmente, os diagramas detalhados seriam gerados automaticamente por meio de ferramentas especializadas, como uma ferramenta de modelagem UML ou IDE, simplificando o processo de criação e atualização dos diagramas. Ao criar esses diagramas, é recomendável mostrar apenas os atributos e métodos relevantes para transmitir a história ou a narrativa desejada, evitando informações excessivas que possam dificultar a compreensão.
+
+Portanto, é aconselhável aplicar esse nível de detalhe apenas aos componentes mais importantes ou complexos, a fim de manter a clareza e a concisão do diagrama de classes. Essa abordagem ajuda a comunicar efetivamente a estrutura do sistema, facilitando o trabalho de desenvolvedores, arquitetos e outras partes interessadas na compreensão do sistema de software em questão.
+
+* **Escopo:** Um único componente.
+* **Elementos primários:** Elementos de código (por exemplo, classes, interfaces, objetos, funções, tabelas de banco de dados, etc.) dentro do componente no escopo.
+*  **Elementos de suporte:** Containers (dentro do sistema de software em escopo) mais pessoas e sistemas de software diretamente conectados aos componentes.
+*  **Público Alvo:** Arquitetos e desenvolvedores de software.

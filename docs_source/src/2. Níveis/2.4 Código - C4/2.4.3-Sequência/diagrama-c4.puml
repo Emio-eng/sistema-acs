@@ -1,0 +1,31 @@
+@startuml sequencia
+    actor usuario as "Usuário"
+    collections front as "Front-end"
+    collections back as "Back-end"
+    entity controlador_req as "Requisicao\nControlador"
+    entity servico_req as "Requisicao\nCertificadoServico"
+    entity servico_cert as "Certificado\nServico"
+    entity repo_req as "Requisicao\nRepositorio"
+    entity repo_cert as "Certificado\nRepositorio"
+
+    usuario -> front: Preenche dados\nda requisição
+    front -> back: headers(id do curso,\nsemestre, qtdCertificados)\nblob[] certificados\nblob certificadosMetadados
+    back -> controlador_req: headers(id do curso,\nsemestre, qtdCertificados)\nMultiPartFile[]certificados\nMultiPartFile[]certificadosMetadados
+    controlador_req -> servico_req: RequisicaoDTO\nrequisicao
+    servico_req -> servico_req: void validarRequisicao()
+    servico_req -> servico_req: CertificadosMetadadosDTO\nconverterMultParfile()
+    servico_req -> repo_req: Requisicao salvarRequisicao()
+    repo_req -> servico_req: Requisicao\nrequisicao
+    servico_req -> servico_req: void\nalidarCertificadosMetadados()
+    servico_req -> servico_cert: void\nadicionarCertificados\n(certificadosMetadados,\ncertificadosArquivos,\nrequisicao)
+    servico_cert -> repo_cert: void\nsalvarCertificado()
+    repo_cert -> servico_cert
+    servico_cert -> servico_req
+    servico_req -> servico_req: String\ngerarTokenRequisicao()
+    servico_req -> servico_req: requisicao.setToken(token)
+    servico_req -> repo_req: Requisicao\nsalvarRequisicao()
+    repo_req -> servico_req: Requisicao\nrequisicao
+    servico_req -> controlador_req: Requisicao\nrequisicao
+    controlador_req -> front: RequisicaoResposta\nrequisicaoResposta
+
+@enduml

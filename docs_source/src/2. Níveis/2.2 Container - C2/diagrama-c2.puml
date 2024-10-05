@@ -1,0 +1,63 @@
+@startuml Diagrama c2 - container
+!theme spacelab
+skinparam actorStyle awesome
+
+node "Sistema ACs" #a7ba59 {
+    [Aplicação web\nTs + React + NextJs] as front
+    [API\nJava + Spring boot] as back
+    database "PostgreSQL"
+
+    front -right--> back: usa
+    back -right--> PostgreSQL: CRUD
+}
+
+node "Cliente SMTP" as SMTP #f0d890 {
+    note as N0 #Gray
+        Lógica de envio de e-mails - Gmail.
+    end note
+}
+
+node "Sistema de autenticação" as Auth #f0d890 {
+    note as N1 #Gray
+        Sistema de Logon único do google OAuth.
+    end note
+}
+
+node "Via Cep WS" as ViaCep #f0d890 {
+    note as N2 #Gray
+        Consumo de API ViaCep.
+    end note
+}
+
+note as front_note #Gray
+    Provêm todas as funcionalidades
+    do sistema ao usuário de acordo
+    com seu perfil a partir da web.
+end note
+
+note as back_note #Gray
+    Provê as funcionalidades da apli-
+    cação via API Json/HTTP.
+end note
+
+note as db_note #Gray
+    Armazena as informações sobre as
+    entidades do sistema.
+end note
+
+front -up-> front_note #line:gray;
+back -up--> back_note #line:gray;
+PostgreSQL -right-> db_note #line:gray;
+
+Actor Usuário #Blue;line.dashed;text:blue
+Actor Escolaridade #f0d890;line.dashed;text:blue
+
+back -down-> Auth #line:gray;text:blue : usa
+back -down-> SMTP #line:gray;text:blue : usa
+back -up--> ViaCep #line:gray;text:blue : usa
+Usuário -up-> front #line:gray;text:blue : usa
+
+Auth -> Usuário #line:gray;text:blue : autentica
+SMTP -down--> Usuário #line:gray;text:blue : Envia e-mail para
+SMTP -right-> Escolaridade #line:gray;text:blue : Envia e-mail para
+@enduml

@@ -1,0 +1,20 @@
+@startuml RF_012
+!theme spacelab
+skinparam actorStyle awesome
+
+:Perfil Aluno: as PA #text:blue
+:Perfil Sistema: as PS #text:blue
+rectangle requisito_funcional as "RF 012/013/015"
+
+(Visualizar Lista de Requisições) as RF12
+(Selecionar Requisição) as RF13
+(Gerar arquivo PDF) as pdf
+(Baixar arquivo PDF) as RF15
+
+PA --> RF12 
+PS --> pdf
+pdf ..> RF15 #line:gray;text:blue : <<extends>>
+RF12 <.. RF13 #line:gray;text:blue : <<extends>>
+RF13 <.right. RF15 #line:gray;text:blue : <<extends>>
+
+@enduml

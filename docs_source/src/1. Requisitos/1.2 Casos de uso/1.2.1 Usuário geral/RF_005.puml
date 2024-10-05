@@ -1,0 +1,24 @@
+@startuml RF_005
+!theme spacelab
+skinparam actorStyle awesome
+
+:Usuário do sistema: as usuario #text:blue
+:Sistema: as sistema #text:blue
+rectangle requisito_funcional as "RF 005"
+
+(Realizar verificação) as verificacao
+(Inserir token) as inserir_token
+
+(Validar verificacação) as validar_verificacao
+(Validar token) as validar_token
+(Verificar usuário) as verificar_usuario
+
+usuario --> verificacao
+verificacao ..> inserir_token #line:gray;text:blue : <<include>>
+verificacao ..> validar_verificacao #line:gray;text:blue : <<include>>
+
+sistema --> validar_verificacao 
+validar_verificacao ..> validar_token #line:gray;text:blue : <<include>>
+validar_verificacao <.. verificar_usuario  #line:gray;text:blue : <<extends>>
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml RF_008
+
+!theme spacelab
+skinparam actorStyle awesome
+:Usuário Geral: as usuario #text:blue
+rectangle "RF 008/009/010"
+
+(Consultar perfil) as RF008
+(Editar dados) as RF009
+(Apagar dados) as RF010
+(Visualizar dados) as visualizar_dados
+(Adicionar dados) as adicionar_dados
+(Inserir dados a serem alterados) as editar_dados
+(Inserir senha) as confirmacao
+
+usuario --> RF008
+RF008 <.. RF009#line:gray;text:blue : <<extends>>
+RF008 <.. RF010#line:gray;text:blue : <<extends>>
+
+RF008 <.. visualizar_dados#line:gray;text:blue : <<extends>>
+RF008 <.. adicionar_dados#line:gray;text:blue : <<extends>>
+
+RF009 ..> editar_dados#line:gray;text:blue : <<include>>
+RF010 ..> confirmacao#line:gray;text:blue : <<include>>
+
+@enduml

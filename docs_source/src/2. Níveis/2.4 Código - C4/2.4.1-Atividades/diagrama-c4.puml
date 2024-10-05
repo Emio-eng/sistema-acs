@@ -1,0 +1,23 @@
+@startuml atividades
+    start
+    if (Acesso à internet?) then (sim)
+        :Navegar até a tela de cadastro de requisições;
+        fork
+            :Informar dados da requisição;
+        fork again
+            :Adicionar informações e arquivos
+            dos certificados;
+        end fork
+        if (As informações são válidas?) then (sim)
+            :Redirecionar para a tela com
+            o protocolo cadastrado;
+            :Tela com as informações
+            da requisição cadastrada;
+            stop
+        else (não)
+            end
+        endif
+    else (não)
+        end
+    endif
+@enduml

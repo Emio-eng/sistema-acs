@@ -1,0 +1,43 @@
+@startuml RF_001 Realizar cadastro via sistema
+!theme spacelab
+skinparam actorStyle awesome
+
+:Usuário Geral: as usuario_geral #text:blue
+:Sistema: as sistema #text:blue
+
+rectangle requisito_funcional as "RF 001"
+(Inserir dados usuario) as inserir_dados_usuario
+
+(Inserir\nnome completo) as nome_completo
+(Inserir\nperíodo) as periodo
+(Inserir\ntelefone) as telefone
+(Inserir\nemail) as email
+(Inserir\nsenha) as senha
+(Inserir\nCEP) as cep
+(Inserir\nnúmero) as numero
+
+(Preencher\ndados de endereço) as preencher_dados
+(Inserir\nrua) as rua
+(Inserir\nbairro) as bairro 
+(Inserir\ncidade) as cidade 
+(Inserir\nUF) as uf 
+
+usuario_geral --> inserir_dados_usuario
+usuario_geral --> numero
+usuario_geral --> cep
+sistema --> preencher_dados
+
+cep ..> preencher_dados#line:gray;text:blue : <<include>>
+
+inserir_dados_usuario ..> nome_completo#line:gray;text:blue : <<include>>
+inserir_dados_usuario ..> periodo#line:gray;text:blue : <<include>>
+inserir_dados_usuario ..> telefone#line:gray;text:blue : <<include>>
+inserir_dados_usuario ..> email#line:gray;text:blue : <<include>>
+inserir_dados_usuario ..> senha#line:gray;text:blue : <<include>>
+
+preencher_dados <.. rua#line:gray;text:blue : <<extends>>
+preencher_dados <.. bairro#line:gray;text:blue : <<extends>>
+preencher_dados ..> cidade#line:gray;text:blue : <<include>>
+preencher_dados ..> uf#line:gray;text:blue : <<include>>
+
+@enduml

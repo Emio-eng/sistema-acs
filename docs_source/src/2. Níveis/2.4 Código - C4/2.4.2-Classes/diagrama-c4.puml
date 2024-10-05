@@ -1,0 +1,161 @@
+@startuml classes
+    class Atividade [[java:br.upe.acs.dominio.Atividade]] {
+        -id: Long
+        -eixo: EixoEnum
+        -descricao: String
+        -chMaxima: int
+    }
+
+    class Certificado {
+    }
+
+    Atividade --> "*" Certificado : certificados
+    class Certificado {
+    }
+
+    Atividade --> "*" Certificado : getCertificados()
+    class Certificado [[java:br.upe.acs.dominio.Certificado]] {
+        -id: Long
+        -titulo: String
+        -descricao: String
+        -data: Date
+        -horas: int
+        -chMaxima: int
+        -chTotal: int
+        -certificado: byte[]
+    }
+
+    class Requisicao {
+    }
+
+    Certificado --> "1" Requisicao : requisicao
+    class Atividade {
+    }
+
+    Certificado --> "1" Atividade : atividade
+    class Requisicao {
+    }
+
+    Certificado --> "1" Requisicao : getRequisicao()
+    class Atividade {
+    }
+
+    Certificado --> "1" Atividade : getAtividade()
+    class Curso [[java:br.upe.acs.dominio.Curso]] {
+        -id: Long
+        -nome: String
+    }
+
+    class Requisicao {
+    }
+
+    Curso --> "*" Requisicao : requisicoes
+    class Usuario {
+    }
+
+    Curso --> "*" Usuario : usuarios
+    class Requisicao {
+    }
+
+    Curso --> "*" Requisicao : getRequisicoes()
+    class Endereco [[java:br.upe.acs.dominio.Endereco]] {
+        -id: Long
+        -cep: String
+        -rua: String
+        -bairro: String
+        -cidade: String
+        -UF: String
+        -numero: int
+    }
+
+    class Usuario {
+    }
+
+    Endereco --> "*" Usuario : usuarios
+    class Usuario {
+    }
+
+    Endereco --> "*" Usuario : getUsuarios()
+    class Requisicao [[java:br.upe.acs.dominio.Requisicao]] {
+        -id: Long
+        -data: Date
+        -semestre: int
+        -qtdCertificados: int
+        -token: String
+        -requisicaoArquivoAssinada: byte[]
+        -statusRequisicao: requisicaoStatusEnum
+    }
+
+    class Usuario {
+    }
+
+    Requisicao --> "1" Usuario : usuario
+    class Curso {
+    }
+
+    Requisicao --> "1" Curso : curso
+    class Certificado {
+    }
+
+    Requisicao --> "*" Certificado : certificados
+    class Curso {
+    }
+
+    Requisicao --> "1" Curso : getCurso()
+    class Certificado {
+    }
+
+    Requisicao --> "*" Certificado : getCertificados()
+    class Usuario {
+    }
+
+    Requisicao --> "1" Usuario : getUsuario()
+    class Usuario [[java:br.upe.acs.dominio.Usuario]] {
+        -{static} serialVersionUID: long
+        -id: Long
+        -nomeCompleto: String
+        -cpf: String
+        -periodo: int
+        -telefone: String
+        -email: String
+        -senha: String
+        -codigoVerificacao: String
+        -verificado: boolean
+        -perfil: PerfilEnum
+        +getAuthorities(): Collection<? extends GrantedAuthority>
+        +getPassword(): String
+        +getUsername(): String
+        +isAccountNonExpired(): boolean
+        +isAccountNonLocked(): boolean
+        +isCredentialsNonExpired(): boolean
+        +isEnabled(): boolean
+    }
+
+    class Endereco {
+    }
+
+    Usuario --> "1" Endereco : endereco
+    class Curso {
+    }
+
+    Usuario --> "1" Curso : curso
+    class Requisicao {
+    }
+
+    Usuario --> "*" Requisicao : requisicoes
+    class Endereco {
+    }
+
+    Usuario --> "1" Endereco : getEndereco()
+    class Curso {
+    }
+
+    Usuario --> "1" Curso : getCurso()
+    class Requisicao {
+    }
+    
+    Usuario --> "*" Requisicao : getRequisicoes()
+    interface UserDetails {
+    }
+    UserDetails <|.. Usuario
+@enduml

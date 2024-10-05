@@ -1,0 +1,21 @@
+@startuml RF_014_016
+!theme spacelab
+skinparam actorStyle awesome
+:Perfil Aluno: as PA
+:Sistema: as PS
+rectangle requisito_funcional as "RF 014/016"
+
+(Rastrear requisições) as rastreio
+(Visualizar indicadores sobre as requisições) as RF16
+(Alertar mudança de status) as RF14
+(Alterar status da requisição) as alterar_status
+(Enviar email para o aluno) as envio_email
+
+PA --> rastreio
+PS --> alterar_status
+rastreio <.. RF14 #line:gray;text:blue : <<extends>>
+rastreio ..> RF16 #line:gray;text:blue : <<include>>
+envio_email ..> RF14#line:gray;text:blue : <<include>>
+alterar_status ..> envio_email #line:gray;text:blue : <<include>>
+
+@enduml

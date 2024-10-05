@@ -1,0 +1,29 @@
+@startuml RF_002 e RF_003
+!theme spacelab
+skinparam actorStyle awesome
+
+:Usuário do sistema: as usuario #text:blue
+
+rectangle requisito_funcional as "RF 002/003/004"
+
+(Realizar login) as login
+
+(Entrar via sistema) as sistema
+(Inserir email) as email
+(Inserir senha) as senha
+
+(Entrar via Google) as google
+(Selecionar uma conta ) as selecionar_conta
+
+(Sair do sistema) as sair
+(Selecionar o botão de logoff) as sair_conta
+
+usuario --> login
+usuario --> sair
+sair ..> sair_conta #line:gray;text:blue : <<include>>
+login <.. sistema #line:gray;text:blue : <<extends>>
+login <.. google  #line:gray;text:blue : <<extends>>
+google ..> selecionar_conta  #line:gray;text:blue : <<include>>
+sistema ..> email #line:gray;text:blue : <<include>>
+sistema ..> senha #line:gray;text:blue : <<include>>
+@enduml

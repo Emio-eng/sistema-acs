@@ -1,0 +1,76 @@
+@startuml Diagrama c1 - contexto
+!theme spacelab
+skinparam actorStyle awesome
+
+actor Usuário #line.dashed;text:blue
+actor Aluno #text:blue
+actor Comissão #text:blue
+actor Coordenador #text:blue
+actor Administrador #text:blue
+actor Escolaridade #f0d890;text:blue
+
+note top of Aluno #Gray
+    O aluno envia a requisição com os
+    certificados e aguarda um retorno.
+    O usuário pode acompanhar a re- 
+    quisição por meio do seu painel.
+end note
+
+note right of Coordenador #Gray
+    O coordenador recebe a requisição 
+    do aluno e encaminha para a ava-
+    liação da comissão. Além disso, 
+    recebe a avaliação da comissão e
+    a ratifica.
+end note
+
+note bottom of Comissão #Gray
+    Avalia a requisição do aluno e é 
+    responsável por conferir e atri-
+    buir os valores corretos de horas
+    de cada certificado de acordo com
+    sua respectiva atividade e eixo.
+end note
+
+note right of Administrador #Gray
+    Atribui perfis a usuários.
+end note
+
+Aluno  -right-> Usuário #line:gray;
+Comissão -up-> Aluno #line:gray;
+Coordenador -up--> Comissão #line:gray;
+Administrador -up--> Coordenador #line:gray;
+
+rectangle Sistema_Acs as "Sistema ACs" #a7ba59
+
+note top of Sistema_Acs #Gray
+    Permite os usuários exe-
+    cutar as funcionalidades
+    de acordo com seu perfil.
+end note
+
+agent Cliente_SMTP as "Cliente SMTP" #f0d890
+note top of Cliente_SMTP #Gray
+    Envio de emails automáticos 
+    relacionados as requisições entre 
+    os atores e para a escolaridade.
+end note
+
+agent OAuth2 as "Sistema de autenticação" #f0d890
+note bottom of OAuth2 #Gray
+    Sistema de Logon único do
+    google OAuth.
+end note
+
+Agent ViaCep as "Via Cep WS" #f0d890
+note bottom of ViaCep #Gray
+    Obter informações do 
+    endereço por meio do CEP.
+end note
+
+Usuário -right-> Sistema_Acs #line:gray;text:blue : usa
+Sistema_Acs -right-> Cliente_SMTP #line:gray;text:blue : envia e-mail
+Escolaridade -left-> Cliente_SMTP #line:gray;text:blue : recebe e-mails
+Sistema_Acs -down-> OAuth2 #line:gray;text:blue : usa
+Sistema_Acs -down-> ViaCep #line:gray;text:blue : usa
+@enduml
